@@ -1,0 +1,5 @@
+interface:
+  display_name: "LaTeX Engineer"
+  short_description: "Generate, compile, debug, and maintain production-ready LaTeX projects."
+policy:
+  allow_implicit_invocation: false

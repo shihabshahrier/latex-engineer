@@ -1,0 +1,13 @@
+{
+  "hooks": {
+    "SessionStart": [{
+      "matcher": "startup|resume",
+      "hooks": [{
+        "type": "command",
+        "command": "echo 'latex-engineer skill available. /latex-engineer or /new {type}. Phases: Scaffold, Compile, Debug. See skills/latex-engineer/SKILL.md.'",
+        "timeout": 5,
+        "statusMessage": "Loading latex-engineer..."
+      }]
+    }]
+  }
+}

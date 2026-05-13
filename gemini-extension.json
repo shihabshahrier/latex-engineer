@@ -1,0 +1,6 @@
+{
+  "name": "latex-engineer",
+  "description": "Generate, compile, debug, and maintain production-ready LaTeX projects.",
+  "version": "1.0.0",
+  "contextFileName": "GEMINI.md"
+}

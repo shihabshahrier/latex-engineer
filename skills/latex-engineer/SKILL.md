@@ -9,7 +9,7 @@ license: MIT
 compatibility: ">=1.0"
 user-invocable: true
 disable-model-invocation: false
-argument-hint: '"command" [args...]'
+argument-hint: 'command [args]'
 when_to_use: >
   Use when user says build a resume, compile latex, fix tex errors, or any /new command related to tex.
 model: sonnet
@@ -28,14 +28,11 @@ Function as a complete LaTeX project operating system. Always prioritize success
 
 | Command | Action |
 |---------|--------|
-| `/new {type}` | Generate a new project (e.g., `resume`, `ieee-paper`, `thesis`) |
-| `/compile` or `/generate-pdf` | Compile current project to PDF |
+| `/new {type}` | Generate a new project (e.g., `resume`, `ieee-paper`, `thesis`, `beamer`) |
+| `/compile` | Compile current project to PDF |
 | `/fix-errors` | Parse compiler logs and repair issues |
-| `/optimize-ats` | Optimize resume for ATS compatibility |
-| `/change-template {to}` | Switch document format |
-| `/insert-figure` / `/insert-table` | Add figure or table block |
-| `/add-citation {doi}` | Add citation and regenerate bibliography |
-| `/switch-engine {engine}` | Switch compiler (pdflatex, xelatex, lualatex) |
+| `/optimize-ats` | Optimize resume for ATS compatibility. Load `references/ats-optimization.md`. |
+| `/change-template {to}` | Switch document class/format |
 | `/clean-build` | Remove auxiliary build files |
 
 ## Mode Detection
@@ -43,9 +40,9 @@ Function as a complete LaTeX project operating system. Always prioritize success
 | Signal | Mode | Action |
 |--------|------|--------|
 | `/new ...` or "create a..." | **Scaffold** | Generate folder structure, main.tex, refs, Makefile. Load `references/templates.md`. |
-| `/compile`, "build PDF" | **Compile** | Run compilation. If error, switch to Debug mode. Load `references/compilation.md`. |
+| `/compile`, "build PDF" | **Compile** | Check LaTeX installed (`which latexmk`). Run compilation. If error, switch to Debug mode. Load `references/compilation.md`. |
 | `/fix-errors`, "failed" | **Debug** | Parse .log files, identify missing packages or syntax errors. Fix and Recompile. |
-| `/optimize-ats` | **Optimize** | Review format, maximize machine readability. |
+| `/optimize-ats` | **Optimize** | Review format, maximize machine readability. Load `references/ats-optimization.md`. |
 | "change format to..." | **Refactor** | Swap class files, adjust sections. |
 
 ## Phases
@@ -72,11 +69,12 @@ project/
 Write LaTeX files. Use proper semantic sections. For non-English/Unicode, default to `lualatex`. Support continuous iterative editing.
 
 ### Phase 3: Compilation Pipeline
-1. Run compilation using `latexmk` or chosen engine.
-2. If fails, read `.log`.
-3. Fix errors (missing packages, bad syntax).
-4. Run `biber` or `bibtex` if citations changed.
-5. Produce final PDF.
+1. Verify LaTeX installation: `which latexmk || which pdflatex`. If missing, instruct user to install TeX Live (`brew install --cask mactex` on macOS, `sudo apt install texlive-full` on Ubuntu).
+2. Run compilation using `latexmk` or chosen engine.
+3. If fails, read `.log`.
+4. Fix errors (missing packages, bad syntax).
+5. Run `biber` or `bibtex` if citations changed.
+6. Produce final PDF.
 *Load `references/compilation.md` before compiling.*
 
 ## Prohibited Actions

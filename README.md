@@ -138,3 +138,7 @@ Please help us keep the skill organized and performant. Keep the following sourc
 ## 📄 License
 
 This project is licensed under the [MIT License](LICENSE).
+
+---
+
+📖 **Project page:** https://shihub.online/projects/latex-engineer

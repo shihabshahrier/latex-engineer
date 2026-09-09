@@ -141,4 +141,4 @@ This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-📖 **Project page:** https://shihub.online/projects/latex-engineer
+📖 **Project page:** https://shihub.site/projects/latex-engineer
